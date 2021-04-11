@@ -16,7 +16,8 @@ import './style.css'
 
 const Profile = (props) =>  {
     const id = props.match.params.id
-    const [posts, setPosts] = useState([])
+    const [userProfile, setUserProfile] = useState('')
+    const [posts, setPosts] = useState('')
     const [imageModal, setImageModal] = useState(true)
     const [modal, setModal] = useState(false)
     const [modalImage, setModalImage] = useState('')
@@ -26,6 +27,13 @@ const Profile = (props) =>  {
     const [numberOfFollowing, setnumberOfFollowing] = useState('')
     const user = JSON.parse(localStorage.getItem('user'))
     
+    const getUser = async () => {
+        const res = await fetch(`/user/${id}`)
+        const data = await res.json()
+        setUserProfile(data.user)
+    }
+
+
     const getUserPosts = async () => {
         const res = await fetch(`/post/${id}`)
       
@@ -81,6 +89,7 @@ const handleImageModal = (post) => {
 }
 
     useEffect(() => {
+       getUser()
        getUserPosts() 
        if (Number(id) === Number(JSON.parse(localStorage.getItem('user')).id)) {
         setisAllowEdit(true)
@@ -97,17 +106,17 @@ const handleImageModal = (post) => {
 
     return (
         <>
-        {posts.length !== 0  ?
+        {posts && userProfile ?
         <div className="profile-main">
            <header>
             <div className="container">
               <div className="profile" style={{margin:'0px'}}>
                   <div className="profile-image">
-                  <Image cloudName="malachcloud" publicId={posts[0].owner_photo} width="200" crop="scale" />
+                  <Image cloudName="malachcloud" publicId={userProfile.profile} width="200" crop="scale" />
                   </div>
 
                  <div className="profile-user-settings">
-                    <h2 className="profile-user-name"> {posts[0].owner_username} </h2>
+                    <h2 className="profile-user-name"> {userProfile.username} </h2>
                     {isAllowEdit ? 
                     <button className="btn profile-edit-btn" onClick={() => setModal(true)}>Edit Profile</button>
                     :
@@ -125,7 +134,7 @@ const handleImageModal = (post) => {
                 </div>
 
                 <div className="profile-bio">
-                    <p><span className="profile-real-name">{posts[0].owner_username}</span> {posts[0].publisher_description} 📷✈️🏕️</p>
+                    <p><span className="profile-real-name">{userProfile.username}</span> {userProfile.profileDescription} 📷✈️🏕️</p>
                 </div>
             </div>
         </div>
@@ -135,7 +144,7 @@ const handleImageModal = (post) => {
     <div className="container">
         <div className="gallery">
         <Grid container>
-        {posts ? posts.slice(0).reverse().map(post => (
+        {posts.length !== 0 ? posts.slice(0).reverse().map(post => (
             <Grid item xs={4} onClick={() => handleImageModal(post)}>
             <div className="gallery-item" tabIndex="0">
                 <img src={post.photo} className="gallery-image" alt=""/>
@@ -147,11 +156,18 @@ const handleImageModal = (post) => {
                 </div>
             </div>
             </Grid>
-        )):null}
+        )):
+        <div className="no_post_div">
+            <h1>No posts yet</h1>
+            <p>Go back to the home page and upload some..</p>
+        </div>
+        }
         </Grid>
         </div>
     </div>
  </main> 
+
+
 </div>
 :<Loader/>}
 

@@ -10,7 +10,10 @@ img {
     max-width: 93.5rem;
     margin: 0 auto;
     padding: 0 2rem;
-
+}
+.no_post_div {
+    position: absolute;
+    left:40%;
 }
 
 .btn {

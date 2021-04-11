@@ -178,7 +178,7 @@ const SignUp = ({ setIsAuth }) => {
           const data = await response.json()
           reRef.current.reset()
           if(data.user){
-            localStorage.setItem('user', JSON.stringify(data.user))
+            localStorage.setItem('user', JSON.stringify({...data.user,newUser:true}))
             dispatch(({ type:'AUTH_USER', payload:data.user }))
             setIsAuth(true)
             history.push('/')

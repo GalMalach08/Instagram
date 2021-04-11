@@ -443,7 +443,15 @@ const onExit = () => {
   setFirstEntry(false)
 }
   useEffect(() => {
-    user.Followings.length === 0 && user.Followers.length === 0 ? setFirstEntry(true) : setFirstEntry(false)
+    if(user.newUser) {
+      setFirstEntry(true)
+      user.newUser = false
+      localStorage.setItem('user',JSON.stringify(user))
+    }
+     else {
+      setFirstEntry(false)
+     }
+   
     getPosts()
     getStories()
     getSuggestionUsers()
