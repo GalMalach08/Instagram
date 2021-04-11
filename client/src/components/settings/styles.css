@@ -1,0 +1,21 @@
+body{
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+.auth-div{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.register-title{
+    font-weight: 700;
+}
+.main {
+ 
+    display: flex;
+    height: 100%;
+}

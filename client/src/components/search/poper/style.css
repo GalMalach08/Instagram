@@ -1,0 +1,18 @@
+.userDiv {
+    display:flex;
+    align-items:center;
+    margin:10px;
+    padding:5px;
+
+}
+.userDiv:hover {
+    background-color:whitesmoke; 
+    cursor:pointer;
+}
+.username {
+    margin:0px 15px;
+    color:black;
+}
+.userimage {
+    border-radius: 50%;
+}
