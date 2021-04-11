@@ -8,7 +8,6 @@
 ###### react (material ui framwork), css, nodejs(express framework), mysql(sequelize orm)  
 
 ### Installation
-#### option 1 : 
 ###### 1. Download the zipped files to your computer
 ###### 2. run "npm install" from the root folder
 ###### 3. cd to the client folder and run "npm install" once again
