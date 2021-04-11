@@ -27,7 +27,7 @@ app.use(express.urlencoded({limit: '10mb', extended: true}))
 
 app.use(session({
     name:'session-id',
-    secret:  process.env.SESS_SECRET,
+    secret: "mysecret",
     resave: false,
     saveUninitialized: false,
 }))
