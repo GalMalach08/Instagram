@@ -1,18 +1,16 @@
-.userDiv {
+.vacationDiv {
     display:flex;
     align-items:center;
     margin:10px;
     padding:5px;
-
+    width:100%;
 }
-.userDiv:hover {
+.vacationDiv:hover {
     background-color:whitesmoke; 
     cursor:pointer;
 }
-.username {
+.sort_type {
     margin:0px 15px;
     color:black;
 }
-.userimage {
-    border-radius: 50%;
-}
+

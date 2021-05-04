@@ -1,137 +1,97 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 // Components
 import Search from '../search/Search'
 // material ui
-import { makeStyles } from '@material-ui/core/styles';
-import {AppBar, Toolbar, Grid, Avatar, Typography, Badge } from '@material-ui/core'
-import IconButton from '@material-ui/core/IconButton';
-import HomeIcon from '@material-ui/icons/Home';
-import NearMeIcon from '@material-ui/icons/NearMe';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { makeStyles } from '@material-ui/core/styles'
+import { Typography } from '@material-ui/core'
+import { Nav, Navbar } from 'react-bootstrap'
+import IconButton from '@material-ui/core/IconButton'
+import HomeIcon from '@material-ui/icons/Home'
+import BarChartIcon from '@material-ui/icons/BarChart'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 // Cloudinary
-import {Image} from 'cloudinary-react';
+import { Image } from 'cloudinary-react'
+// Css
+import './style.css'
 
 const useStyles = makeStyles((theme) => ({
-  grow: {
-    flexGrow: 1,
-    marginBottom:'60px'
-  },
-  appbar: {
-      backgroundColor:'white',
-      color:'black'
+  searchLink: {
+    [theme.breakpoints.up('md')]: {
+      margin:'0px 70px',
+      width: 'auto',
+    },
   },
   title: {
     display: 'none',
-    [theme.breakpoints.up('xs')]: {
+    [theme.breakpoints.up('md')]: {
       display: 'flex'
     },
     marginRight:'35%'
   },
-  search: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: "whitesmoke",
-    '&:hover': {
-      backgroundColor: 'lightgrey',
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: '0',
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(3),
-      width: 'auto',
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  inputRoot: {
-    color: 'inherit',
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-  sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
-  },
-  
+  helloUser: {
+    margin:'auto 15px',
+    width: '165px',
+    fontWeight:'600',
+    color:'black',
+    [theme.breakpoints.down('md')]: {
+      display: 'none'
+    }
+  }
 }))
 
 const Header = () => {
   const user = JSON.parse(localStorage.getItem('user'))
+  const [username, setUsername] = useState(user.username)
   const classes = useStyles()
 
   return (
-    <Grid container>
     <div className={classes.grow}>
-
-      <AppBar className={classes.appbar} position="fixed">
-      <div className="container">
-        <Toolbar style={{background:'white'}}>
-          <Link to="/" style={{ textDecoration: 'none', marginRight:'30%'  }}>
-            <Typography className={classes.title} variant="h6" noWrap>
-            <img style={{height:'29px', width:'143px'}} src="https://i.imgur.com/zqpwkLQ.png" alt="logo" />
-            </Typography>
-            </Link>
-            <Search/>
-          
-          <div className={classes.grow} />
-            <div className={classes.sectionDesktop}>
-              <Link to="/" style={{ textDecoration: 'none', color:'black', marginTop:'7px' }}>
-              <IconButton color="inherit">
-              <HomeIcon fontSize="medium"/>
-              </IconButton>
-              </Link>
-              <Link to={`/chat/0`} style={{ textDecoration: 'none', color:'black', marginTop:'7px' }}>
-                <IconButton color="inherit">
-                  <Badge badgeContent={4} color="secondary">
-                    <NearMeIcon fontSize="medium" />
-                  </Badge>
-                </IconButton>
-              </Link>
-                <IconButton  color="inherit">
-                  <Badge badgeContent={17} color="secondary">
-                    <NotificationsIcon fontSize="medium"/>
-                  </Badge>
-                </IconButton>
-                <Link to={`/profile/${user.id}`}>
-                <IconButton color="inherit">
-                <Avatar> <Image cloudName="malachcloud" publicId={user.profile} width="40" height="40" crop="scale" />  </Avatar>
-                </IconButton>
+    
+        <div className="container-fluid bg-white nav-fill w-100">
+          <div className="container">
+            <Navbar bg="white" expand="md" className="navbar">
+              <Navbar.Brand style={{height:'40px'}}>
+                <Link to="/" style={{ textDecoration: 'none', marginRight:'25%'}}>
+                  <Typography className={classes.title} variant="h6" noWrap>
+                    <Image cloudName="malachcloud" src="https://res.cloudinary.com/malachcloud/image/upload/v1618384622/summer-hot-vacation-logo-illustration-art-isolated-background-91286774_syvpkz.jpg" width="70" height="40" crop="scale" />
+                  </Typography>
                 </Link>
-                <Link to="/logout" style={{ textDecoration: 'none', color:'black', marginTop:'7px' }}>
-                <IconButton color="inherit">
-                    <ExitToAppIcon fontSize="medium"/>
-                </IconButton>
-                </Link>
-             </div>
-        </Toolbar>
+              </Navbar.Brand>
+              <Navbar.Toggle/>
+              <Navbar.Collapse className="navbar_collapse" id="basic-navbar-nav">
+                <Nav className="mr-auto">
+                  <div className={classes.searchLink}>  <Search/> </div>
+                  <div className={classes.helloUser}>  Hello {username} </div>
+                  <Nav.Link> 
+                    <Link to="/" style={{ textDecoration: 'none', color:'black', marginTop:'7px' }}>
+                      <IconButton color="inherit">
+                        <HomeIcon/> <span className="link_desc">Home</span>
+                      </IconButton>
+                    </Link>
+                  </Nav.Link>
+                  <Nav.Link> 
+                    {user.admin && 
+                        <Link to="/chart" style={{ textDecoration: 'none', color:'black', marginTop:'7px' }}>
+                        <IconButton color="inherit">
+                        <BarChartIcon/> <span className="link_desc">Chart</span>
+                        </IconButton>
+                        </Link>
+                        }
+                  </Nav.Link>
+                  <Nav.Link> 
+                    <Link to="/logout" style={{ textDecoration: 'none', color:'black', marginTop:'7px' }}>
+                      <IconButton color="inherit">
+                        <ExitToAppIcon/> <span className="link_desc">Logout</span>
+                      </IconButton>
+                    </Link>
+                  </Nav.Link>
+                </Nav>
+              </Navbar.Collapse>
+          </Navbar>
       </div>
-     </AppBar>
     </div>
-  </Grid>
+  </div> 
   )
 }
 export default Header

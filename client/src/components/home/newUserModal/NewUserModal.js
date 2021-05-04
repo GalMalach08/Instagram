@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import { Button } from '@material-ui/core'
 import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
+import './style.css'
 
-const NewUserModal = ({ stepsEnabled ,setStepsEnabled })  =>  {
+const NewUserModal = ({ setStepsEnabled })  =>  {
     const user = JSON.parse(localStorage.getItem('user'))
     const [show, setShow] = useState(true)
 
@@ -12,25 +13,22 @@ const NewUserModal = ({ stepsEnabled ,setStepsEnabled })  =>  {
  
     // Start the introduction
     const hanleIntro = () => {
-        handleClose() 
-        toggleSteps()
-      
+      handleClose() 
+      toggleSteps()
     }
-    
-     const toggleSteps = () => {
-        setStepsEnabled(true)
-      }
+  
+    const toggleSteps = () => {
+      setStepsEnabled(true)
+    }
 
     return (
       <>
-        <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false} style={{textAlign:'center'}}>
+        <Modal show={show} onHide={handleClose} centered backdrop="static" keyboard={false}>
           <Modal.Header closeButton>
-    
-            <Modal.Title style={{margin:'auto',fontWeight:'600'}}>Hello {user.username} </Modal.Title>
-     
+            <Modal.Title className="modal_title"><div className="modal_title_content"> Hello {user.username} </div> </Modal.Title>
           </Modal.Header>
-          <Modal.Body  className="world" >
-            Welcome to instagram! the most popular social media in the world with more than 100 million users!
+          <Modal.Body>
+            Welcome to Vacation4U! the most popular vacation website in the world with more than 100 million users!
           </Modal.Body>
           <Modal.Footer>
             <Button variant="outlined" color="primary" onClick={() => hanleIntro() } style={{margin:'auto'}}>
@@ -39,6 +37,6 @@ const NewUserModal = ({ stepsEnabled ,setStepsEnabled })  =>  {
           </Modal.Footer>
         </Modal>
       </>
-    );
+    )
   }
-export default NewUserModal;
+export default NewUserModal

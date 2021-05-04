@@ -5,7 +5,6 @@ require('dotenv').config({path: `${__dirname}/../../.env`})
 const { Op } = require("sequelize")
 // files, functions, middleware require
 const db = require('../db/models')
-const isAuth = require('../middleware/auth')
 const { cloudinary } = require('../utils/cloudinary')
 const { isPhotoValid }  = require('../utils/photoValidation')
 

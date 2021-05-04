@@ -1,77 +1,13 @@
-
-.price-for{
-    font-size: 25px;
+body{
+    background:url('https://res.cloudinary.com/malachcloud/image/upload/c_scale,w_2000/v1618680249/92269542-airplane-in-the-sunset-sky-flight-travel-transport-airline-background-concept-_i7qawa.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
-.user-suggested-headline{
-    color:#DCDCDC;
-    font-weight:600;
+.mini_title {
+    font-weight: 700;
+    font-size: 15px;
 }
-.user-suggested-follow {
-    color:#1CA0F6;
-    /* margin-right: 10px; */
+.mini_content {
+    font-size:13px;
 }
-.myTooltipClass {
-    font-weight: 600;
-}
-.showmore-btn {
-    color: #fff !important;
-    text-transform: uppercase;
-    text-decoration: none;
-    background: #60a3bc;
-    padding: 20px;
-    border-radius: 50px;
-    display: inline-block;
-    border: none;
-    transition: all 0.4s ease 0s;
-    cursor: pointer;
-    }
-    .showmore-btn:hover {
-        text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
-        transition: all 0.4s ease 0s;
-        }
-
-    .error{
-        color:red;
-        margin:5px;
-    }
-    .preview-image {
-        margin:10px
-    }
-    .preview-image img{
-        width:200px;
-        height:200px;
-        margin:auto;
-        border-radius: 3px;
-    }
-    .post-content {
-        font-weight: 100;
-        text-decoration: none;
-    }
-    .commeter{
-        margin:0 8px
-    }
-    .post-date{
-        font-size: 12px;
-        margin-top: 15px;
-        color:gray
-    }
-    button {
-        outline: 'none'
-    }
-    .MuiInputBase-input {
-        font: inherit;
-        color: currentColor;
-        width: 100%;
-        border: 0;
-        height: 1.1876em;
-        margin: 10px;
-        display: block;
-        padding: 6px 0 7px;
-        min-width: 0;
-        background: none;
-        box-sizing: content-box;
-        animation-name: mui-auto-fill-cancel;
-        letter-spacing: inherit;
-        animation-duration: 10ms;
-        -webkit-tap-highlight-color: transparent;
-    }

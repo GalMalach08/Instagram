@@ -1,27 +1,32 @@
 import React, { useState, useEffect } from 'react' // imrse
 import { useHistory } from "react-router-dom"
         
-export default function authgaurd(ComposedComponent, setIsAuthenticate) {
+export const authGaurd = (ComposedComponent, setIsAuthenticate) => {
     const AuthenticationCheck = (props) => {
         const history = useHistory()
         const [isAuth, setIsAuth] = useState(false)
 
         const isUserAuthenticate = async () => {
-          const response = await fetch('/auth/isauth')
-          const { success } = await response.json()
-          if (success) {
+          const user = JSON.parse(localStorage.getItem('user'))
+          if (user) {
             setIsAuthenticate(true)
-            console.log('auth');
             setIsAuth(true) 
+            if(props.match.path === '/chart') {
+              if(user.admin) {
+                console.log('auth as admin')
+              } else {
+                console.log('not auth as admin')
+                history.push('/')
+              }
+            }
           }
           else {
             setIsAuthenticate(false)
             setIsAuth(false)
-            console.log('not auth');
+            console.log('not auth')
             history.push('/signin')
           } 
         }     
-
         useEffect(() => {
            isUserAuthenticate()
         }, [])
@@ -37,4 +42,7 @@ export default function authgaurd(ComposedComponent, setIsAuthenticate) {
     return AuthenticationCheck
 }
     
+
+
+
         

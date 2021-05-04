@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "root",
-    "password": "",
-    "database": "instagram",
-    "host": "127.0.0.1",
+    "username": "bd5ee7c25761cf",
+    "password": "fc9bf5ed",
+    "database": "heroku_4b42da28d9a6542",
+    "host": "eu-cdbr-west-01.cleardb.com",
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
+    "username": "bd5ee7c25761cf",
+    "password": "fc9bf5ed",
+    "database": "heroku_4b42da28d9a6542",
+    "host": "eu-cdbr-west-01.cleardb.com",
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "username": "bd5ee7c25761cf",
+    "password": "fc9bf5ed",
+    "database": "heroku_4b42da28d9a6542",
+    "host": "eu-cdbr-west-01.cleardb.com",
     "dialect": "mysql"
   }
 }
